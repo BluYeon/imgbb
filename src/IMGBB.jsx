@@ -4,13 +4,13 @@ import Table from './Table.jsx'
 function IMGBB() {
     const [results, setResults] = useState([])
 
-   async function submitFunc() {
+    async function submitFunc() {
         var content = document.getElementById("content").value;
         var result = [];
-        
+
         var contentarr = content.split("\n");
-        
-        contentarr.forEach((element,idx) => {
+
+        contentarr.forEach((element, idx) => {
             if (element.includes("jpg")) {
                 result.push({
                     text: "Copy",
@@ -19,21 +19,22 @@ function IMGBB() {
             } else {
                 result.push(
                     {
-                    text:"Copy",
-                    url:element.slice(element.indexOf("src=") + 5, element.indexOf("png") + 3)})
+                        text: "Copy",
+                        url: element.slice(element.indexOf("src=") + 5, element.indexOf("png") + 3)
+                    })
             }
         });
         await setResults(result)
-        
+
     }
     return (
-            <div style={{ display: 'flex' }}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <textarea id="content" rows="50" cols="50"></textarea>
-                    <button onClick={submitFunc}>Submit</button>
-                </div>
-                <Table content={results} />
+        <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <textarea id="content" rows="50" cols="50"></textarea>
+                <button onClick={submitFunc}>Submit</button>
             </div>
+            <Table content={results} />
+        </div>
     )
 }
 
